@@ -4,7 +4,13 @@
   </div>
   <div class="contents">
     <div class="form">
-      
+      <%= form_with  url: "hands/index" do |f| %>
+        <%= f.text_field :card, class: "input", size: 30 %>
+        <%= f.submit "Check", class: 'submit' %>
+      <% end %>
+    </div>
+    <div class="result">
+      <%= @hand.card %>
     </div>
   </div>
 </div>
