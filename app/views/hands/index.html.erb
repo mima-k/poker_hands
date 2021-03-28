@@ -3,12 +3,12 @@
     <h1>Check a Poker Hand</h1>
   </div>
   <div class="contents">
-    <div class="form">
-      <%= form_with  url: "/" do |f| %>
-        <%= f.text_field :card, class: "input", size: 30 %>
-        <%= f.submit "Check", class: 'submit' %>
-      <% end %>
-    </div>
+    <%= form_with  url: "/" do |f| %>
+      <div class="form-group">
+        <%= f.text_field :card, class: "form-control hand-input", size: 30 %>
+        <%= f.submit "Check", class: 'btn btn-outline-primary check-btn' %>
+      </div>
+    <% end %>
     <div class="result">
       <%= @hand.card %>
     </div>

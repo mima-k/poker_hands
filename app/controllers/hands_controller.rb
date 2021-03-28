@@ -4,7 +4,8 @@ class HandsController < ApplicationController
     @hand = Hand.new
     if request.post?
       hand = params.permit(:card)
-      @hand = Hand.new(hand) unless hand.nil?
+      @hand.judge
+      # @hand = Hand.new(hand) unless hand.nil?
     end
   end
 end

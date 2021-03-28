@@ -6,6 +6,7 @@
 }
 
 .title {
+  margin: 50px 0;
   text-align: center
 }
 
@@ -16,4 +17,23 @@
   background-color: #f5f5f5;
   border-radius: 12px;
   display: block;
+}
+
+.form-group{
+  width: 600px;
+  height: 200px;
+  text-align: center;
+  display: inline-block;
+}
+
+.hand-input{
+  width: 330px;
+  margin: 0 auto;
+  margin-top: 20px;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.check-btn{
+  margin: 20px;
 }
