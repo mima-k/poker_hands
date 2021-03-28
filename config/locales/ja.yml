@@ -3,5 +3,5 @@ ja:
     errors:
       models:
         hand:
-          hands_format: "5つのカード指定文字を半角スペース区切りで入力してください。"
+          format: "5つのカード指定文字を半角スペース区切りで入力してください。"
           duplicate: "カードが重複しています。"
