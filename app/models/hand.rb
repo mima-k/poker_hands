@@ -1,16 +1,16 @@
 class Hand
   include ActiveModel::Model
-  attr_accessor :card, :judgement
+  attr_accessor :cards, :result, :errors
 
   #バリデーションの定義
-  validates :card, presence: true
+  validates :cards, presence: true
 
   
-  def judge
-    if card = "d"
-      judgement = "true"
+  def error_check
+    if cards == "a"
+      @result = "test"
     else
-      judgement = "false"
+      @result = cards
     end
   end
 end

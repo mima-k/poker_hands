@@ -3,9 +3,8 @@ class HandsController < ApplicationController
   def index
     @hand = Hand.new
     if request.post?
-      hand = params.permit(:card)
-      @hand.judge
-      # @hand = Hand.new(hand) unless hand.nil?
+      @hand = Hand.new(cards: params[:cards])
+      @hand.error_check
     end
   end
 end

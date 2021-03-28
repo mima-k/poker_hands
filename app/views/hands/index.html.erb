@@ -5,12 +5,12 @@
   <div class="contents">
     <%= form_with  url: "/" do |f| %>
       <div class="form-group">
-        <%= f.text_field :card, class: "form-control hand-input", size: 30 %>
+        <%= f.text_field :cards, class: "form-control hand-input", size: 30 %>
         <%= f.submit "Check", class: 'btn btn-outline-primary check-btn' %>
       </div>
     <% end %>
     <div class="result">
-      <%= @hand.card %>
+      <%= @hand.result %>
     </div>
   </div>
 </div>
