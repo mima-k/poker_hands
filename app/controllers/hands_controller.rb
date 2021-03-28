@@ -4,7 +4,6 @@ class HandsController < ApplicationController
     @hand = Hand.new
     if request.post?
       @hand = Hand.new(cards: params[:cards])
-      # @hand.error_check
       @hand.judge_hands
     end
   end
