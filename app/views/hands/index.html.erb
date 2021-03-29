@@ -9,8 +9,14 @@
         <%= f.submit "Check", class: 'btn btn-outline-primary check-btn' %>
       </div>
     <% end %>
-    <div class="result">
-      <%= @hand.result %>
+    <% if @hand.result.present? %>
+      <div class="result">
+        <div class="result-text bg-success">
+          <%= @hand.result %>
+        </div>
+      </div>
+    <% end %>
+    <div class="errors">
       <%# <% if @hand.errors.any?  %>
         <%# <% @hand.errors.full_messages_for(:cards).each do |message|  %>
           <%# <span class="error_message"><%= message </span> %>
