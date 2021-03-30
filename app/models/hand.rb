@@ -61,14 +61,14 @@ class Hand
     if /\A[A-Z][0-90-9]+ [A-Z][0-90-9]+ [A-Z][0-90-9]+ [A-Z][0-90-9]+ [A-Z][0-90-9]+\z/ === cards
       cards_arr.each_with_index do |card, i|
         if card !~ /\A[SDCH]([1-9]|1[0-3])\z/
-          errors[:base] << "#{i + 1}番目のカード指定文字が不正です。（#{card}）¥n半角英字大文字のスート（S,H,D,C）と数字（1〜13）の組み合わせでカードを指定してください。"
+          errors[:base] << "#{i + 1}番目のカード指定文字が不正です。(#{card})\n半角英字大文字のスート(S,H,D,C)と数字(1〜13)の組み合わせでカードを指定してください。"
         end
       end
       if cards_arr.size != cards_arr.uniq.size
         errors[:base] << "カードが重複しています。"
       end
     else
-      errors[:base] << "5つのカード指定文字を半角スペース区切りで入力してください。（例：S1 H3 D9 C13 S11）"
+      errors[:base] << "5つのカード指定文字を半角スペース区切りで入力してください。(例：S1 H3 D9 C13 S11)"
     end
   end
 end

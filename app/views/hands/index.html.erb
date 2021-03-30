@@ -19,7 +19,7 @@
     <div class="errors">
       <% if @hand.errors.any? %>
         <% @hand.errors.full_messages_for(:base).each do |message| %>
-          <div class="error_message"><%= message %></div>
+          <div class="error_message bg-warning"><%= message %></div>
         <% end %>
       <% end %> 
     </div>

@@ -10,7 +10,7 @@
   text-align: center
 }
 
-.contents{
+.contents {
   width: 600px;
   height: 370px;
   margin: 0 auto;
@@ -19,14 +19,14 @@
   display: block;
 }
 
-.form-group{
+.form-group {
   width: 600px;
   height: 200px;
   text-align: center;
   display: inline-block;
 }
 
-.hand-input{
+.hand-input {
   width: 330px;
   margin: 0 auto;
   margin-top: 20px;
@@ -34,18 +34,28 @@
   text-align: center;
 }
 
-.check-btn{
+.check-btn {
   margin: 20px;
 }
 
-.result{
+.result {
   width: 400px;
   margin: 0 auto;
   text-align: center;
 }
 
-.result-text{
+.result-text {
   display: inline;
   padding: 10px;
   font-size: 20px;
+}
+
+.errors {
+  width: 500px;
+  margin: 0 auto;
+}
+
+.error_message {
+  padding: 10px;
+  white-space: pre-wrap;
 }
