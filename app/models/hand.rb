@@ -11,27 +11,24 @@ class Hand
     @suits = cards.delete("^SDHC").chars
     @numbers = cards.delete("^0-9| ").split(" ").map(&:to_i)
 
-    case [straight?, flash?]
-    when [true, true]
-      @result = "ストレートフラッシュ"
-    when [true, false]
-      @result = "ストレート"
-    when [false, true]
-      @result = "フラッシュ"
-    end
-
-    if dup_check == 4
-      @result = "フォー・オブ・ア・カインド"
+    if straight? && flash?
+      return @result = "ストレートフラッシュ"
+    elsif dup_check == 4
+      return @result = "フォー・オブ・ア・カインド"
     elsif dup_check != 4 && @numbers.uniq.size == 2
-      @result = "フルハウス"
+      return @result = "フルハウス"
+    elsif !straight? && flash?
+      return @result = "フラッシュ"
+    elsif straight? && !flash?
+      return @result = "ストレート"
     elsif dup_check == 3
-      @result = "スリー・オブ・ア・カインド"
+      return @result = "スリー・オブ・ア・カインド"
     elsif dup_check != 3 && @numbers.uniq.size == 3
-      @result = "ツーペア"
+      return @result = "ツーペア"
     elsif @numbers.uniq.size == 4
-      @result = "ワンペア"
+      return @result = "ワンペア"
     else
-      @result = "ハイカード"
+      return @result = "ハイカード"
     end
   end
 
