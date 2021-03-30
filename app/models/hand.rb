@@ -2,24 +2,22 @@ class Hand
   include ActiveModel::Model
   include ActiveModel::Validations
   include ActiveModel::Attributes
-  attr_accessor :cards, :result, :errors
+  attr_accessor :cards, :result, :error_msgs
 
   #バリデーションの定義
-  validates :cards, presence: true
-                    # format: {
-                    #   with: /\A[SDCH]([1-9]|1[0-3]) [SDCH]([1-9]|1[0-3]) [SCDH]([1-9]|1[0-3]) [SCDH]([1-9]|1[0-3]) [SCDH]([1-9]|1[0-3])\z/,
-                    #   message: -> (rec, data) {
-                    #     I18n.t('activemodel.errors.models.hand.format')
-                    #   }
-                    # }
-
+  validates :cards, presence: true,
+                    format: {
+                      with: /\A[SDCH]([1-9]|1[0-3]) [SDCH]([1-9]|1[0-3]) [SCDH]([1-9]|1[0-3]) [SCDH]([1-9]|1[0-3]) [SCDH]([1-9]|1[0-3])\z/,
+                      message: ->(rec, data) {
+                        I18n.t("activemodel.errors.models.hand.format")
+                      },
+                    }
 
   def judge_hands
     # マークと数字の分割
     @suits = cards.delete("^SDHC").chars
     @numbers = cards.delete("^0-9| ").split(" ").map(&:to_i)
-    p @numbers
-   
+
     case [straight?, flash?]
     when [true, true]
       @result = "ストレートフラッシュ"
@@ -42,10 +40,10 @@ class Hand
     else
       @result = "ハイカード"
     end
-
   end
 
   private
+
   # ストレート判定
   def straight?
     nums = @numbers.uniq.sort
