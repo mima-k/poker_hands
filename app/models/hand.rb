@@ -4,14 +4,7 @@ class Hand
   include ActiveModel::Attributes
   attr_accessor :cards, :result, :error_msgs
 
-  #バリデーションの定義
-  validates :cards, presence: true,
-                    format: {
-                      with: /\A[SDCH]([1-9]|1[0-3]) [SDCH]([1-9]|1[0-3]) [SCDH]([1-9]|1[0-3]) [SCDH]([1-9]|1[0-3]) [SCDH]([1-9]|1[0-3])\z/,
-                      message: ->(rec, data) {
-                        I18n.t("activemodel.errors.models.hand.format")
-                      },
-                    }
+  validate :hand_valid
 
   def judge_hands
     # マークと数字の分割
@@ -60,5 +53,22 @@ class Hand
   def dup_check
     most = @numbers.max_by { |a| @numbers.count(a) }
     return @numbers.count(most)
+  end
+
+  # バリデーションの定義
+  def hand_valid
+    cards_arr = cards.split(" ")
+    if /\A[A-Z][0-90-9]+ [A-Z][0-90-9]+ [A-Z][0-90-9]+ [A-Z][0-90-9]+ [A-Z][0-90-9]+\z/ === cards
+      cards_arr.each_with_index do |card, i|
+        if card !~ /\A[SDCH]([1-9]|1[0-3])\z/
+          errors[:base] << "#{i + 1}番目のカード指定文字が不正です。（#{card}）¥n半角英字大文字のスート（S,H,D,C）と数字（1〜13）の組み合わせでカードを指定してください。"
+        end
+      end
+      if cards_arr.size != cards_arr.uniq.size
+        errors[:base] << "カードが重複しています。"
+      end
+    else
+      errors[:base] << "5つのカード指定文字を半角スペース区切りで入力してください。（例：S1 H3 D9 C13 S11）"
+    end
   end
 end
