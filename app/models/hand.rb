@@ -1,8 +1,6 @@
 class Hand
   include ActiveModel::Model
-  include ActiveModel::Validations
-  include ActiveModel::Attributes
-  attr_accessor :cards, :result, :error_msgs
+  attr_accessor :cards, :result
 
   validate :hand_valid
 

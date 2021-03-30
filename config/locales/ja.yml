@@ -1,7 +1,0 @@
-ja:
-  activemodel:
-    errors:
-      models:
-        hand:
-          format: "5つのカード指定文字を半角スペース区切りで入力してください。"
-          duplicate: "カードが重複しています。"
