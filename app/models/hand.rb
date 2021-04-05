@@ -11,17 +11,17 @@ class Hand
 
     if straight? && flash?
       @result = "ストレートフラッシュ"
-    elsif dup_check == 4
+    elsif duplication_count == 4
       @result = "フォー・オブ・ア・カインド"
-    elsif dup_check != 4 && @numbers.uniq.size == 2
+    elsif duplication_count != 4 && @numbers.uniq.size == 2
       @result = "フルハウス"
     elsif flash?
       @result = "フラッシュ"
     elsif straight?
       @result = "ストレート"
-    elsif dup_check == 3
+    elsif duplication_count == 3
       @result = "スリー・オブ・ア・カインド"
-    elsif dup_check != 3 && @numbers.uniq.size == 3
+    elsif duplication_count != 3 && @numbers.uniq.size == 3
       @result = "ツーペア"
     elsif @numbers.uniq.size == 4
       @result = "ワンペア"
@@ -44,8 +44,8 @@ class Hand
     @suits.uniq.size == 1
   end
 
-  # 手札の中で数字の重複数の最大を返す
-  def dup_check
+  # 手札の中で重複数が最大となる数字を返す
+  def duplication_count
     most = @numbers.max_by { |a| @numbers.count(a) }
     return @numbers.count(most)
   end
