@@ -10,23 +10,23 @@ class Hand
     @numbers = cards.delete("^0-9| ").split(" ").map(&:to_i)
 
     if straight? && flash?
-      return @result = "ストレートフラッシュ"
+      @result = "ストレートフラッシュ"
     elsif dup_check == 4
-      return @result = "フォー・オブ・ア・カインド"
+      @result = "フォー・オブ・ア・カインド"
     elsif dup_check != 4 && @numbers.uniq.size == 2
-      return @result = "フルハウス"
+      @result = "フルハウス"
     elsif flash?
-      return @result = "フラッシュ"
+      @result = "フラッシュ"
     elsif straight?
-      return @result = "ストレート"
+      @result = "ストレート"
     elsif dup_check == 3
-      return @result = "スリー・オブ・ア・カインド"
+      @result = "スリー・オブ・ア・カインド"
     elsif dup_check != 3 && @numbers.uniq.size == 3
-      return @result = "ツーペア"
+      @result = "ツーペア"
     elsif @numbers.uniq.size == 4
-      return @result = "ワンペア"
+      @result = "ワンペア"
     else
-      return @result = "ハイカード"
+      @result = "ハイカード"
     end
   end
 
