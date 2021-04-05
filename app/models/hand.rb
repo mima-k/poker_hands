@@ -15,9 +15,9 @@ class Hand
       return @result = "フォー・オブ・ア・カインド"
     elsif dup_check != 4 && @numbers.uniq.size == 2
       return @result = "フルハウス"
-    elsif !straight? && flash?
+    elsif flash?
       return @result = "フラッシュ"
-    elsif straight? && !flash?
+    elsif straight?
       return @result = "ストレート"
     elsif dup_check == 3
       return @result = "スリー・オブ・ア・カインド"
