@@ -36,7 +36,7 @@ class Hand
   def straight?
     nums = @numbers.uniq.sort
     return false if nums.size < 5
-    nums.last - nums.first == 4 || nums[0] == 1 && nums[1] == 10 && nums[2] == 11 && nums[3] == 12 && nums[4] == 13
+    (nums.last - nums.first == 4) || (nums == [1,10,11,12,13])
   end
 
   # フラッシュ判定
