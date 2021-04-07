@@ -3,12 +3,20 @@ module PokerJudgeService
     include ActiveModel::Model
     attr_accessor :cards, :result
 
-    validate :hand_valid
-
     SUIT_REGEX = "^SDHC"
     NUMBER_REGEX = "^0-9| "
     VALID_HANDS_REGEX = /\A[A-Z][0-90-9]+ [A-Z][0-90-9]+ [A-Z][0-90-9]+ [A-Z][0-90-9]+ [A-Z][0-90-9]+\z/
     VALID_CARD_REGEX = /\A[SDCH]([1-9]|1[0-3])\z/
+
+    def judge
+      if hand_valid?
+        poker_hand
+      else
+        false
+      end
+    end
+
+    private
 
     def poker_hand
       # マークと数字の分割
@@ -36,8 +44,6 @@ module PokerJudgeService
       end
     end
 
-    private
-
     # ストレート判定
     def straight?
       nums = @numbers.uniq.sort
@@ -57,7 +63,7 @@ module PokerJudgeService
     end
 
     # バリデーションの定義
-    def hand_valid
+    def hand_valid?
       cards_arr = cards.split(" ")
       if VALID_HANDS_REGEX === cards
         cards_arr.each_with_index do |card, i|
@@ -70,6 +76,7 @@ module PokerJudgeService
           errors[:base] << "カードが重複しています。"
           return false
         end
+        return true
       else
         errors[:base] << "5つのカード指定文字を半角スペース区切りで入力してください。(例：S1 H3 D9 C13 S11)"
         return false

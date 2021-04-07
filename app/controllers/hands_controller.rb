@@ -5,9 +5,7 @@ class HandsController < ApplicationController
   def index
     if request.post?
       @hand = Hand.new(cards: params[:cards])
-      if @hand.valid?
-        @hand.judge_hands
-      end
+      @hand.judge
     else
       @hand = Hand.new
     end
