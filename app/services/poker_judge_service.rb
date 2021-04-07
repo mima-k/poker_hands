@@ -10,7 +10,7 @@ module PokerJudgeService
     VALID_HANDS_REGEX = /\A[A-Z][0-90-9]+ [A-Z][0-90-9]+ [A-Z][0-90-9]+ [A-Z][0-90-9]+ [A-Z][0-90-9]+\z/
     VALID_CARD_REGEX = /\A[SDCH]([1-9]|1[0-3])\z/
 
-    def judge_hands
+    def poker_hand
       # マークと数字の分割
       @suits = cards.delete(SUIT_REGEX).chars
       @numbers = cards.delete(NUMBER_REGEX).split(" ").map(&:to_i)
