@@ -4,7 +4,8 @@ class HandsController < ApplicationController
 
   def index
     if request.post?
-      @hand = Hand.new(cards: params[:cards])
+      @hand = Hand.new
+      @hand.cards = params[:cards]
       @hand.judge
     else
       @hand = Hand.new

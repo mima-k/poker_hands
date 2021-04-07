@@ -1,7 +1,6 @@
 module PokerJudgeService
   class Hand
-    include ActiveModel::Model
-    attr_accessor :cards, :result
+    attr_accessor :cards, :result, :errors
 
     SUIT_REGEX = "^SDHC"
     NUMBER_REGEX = "^0-9| "
@@ -65,20 +64,21 @@ module PokerJudgeService
     # バリデーションの定義
     def hand_valid?
       cards_arr = cards.split(" ")
+      @errors = []
       if VALID_HANDS_REGEX === cards
         cards_arr.each_with_index do |card, i|
           if card !~ VALID_CARD_REGEX
-            errors[:base] << "#{i + 1}番目のカード指定文字が不正です。(#{card})\n半角英字大文字のスート(S,H,D,C)と数字(1〜13)の組み合わせでカードを指定してください。"
+            @errors << "#{i + 1}番目のカード指定文字が不正です。(#{card})\n半角英字大文字のスート(S,H,D,C)と数字(1〜13)の組み合わせでカードを指定してください。"
             return false
           end
         end
         if cards_arr.size != cards_arr.uniq.size
-          errors[:base] << "カードが重複しています。"
+          @errors << "カードが重複しています。"
           return false
         end
         return true
       else
-        errors[:base] << "5つのカード指定文字を半角スペース区切りで入力してください。(例：S1 H3 D9 C13 S11)"
+        @errors << "5つのカード指定文字を半角スペース区切りで入力してください。(例：S1 H3 D9 C13 S11)"
         return false
       end
     end
