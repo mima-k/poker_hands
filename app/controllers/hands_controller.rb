@@ -1,13 +1,14 @@
 class HandsController < ApplicationController
   protect_from_forgery except: :index
+  include PokerJudgeService
 
   def index
-    @hand = Hand.new
     if request.post?
-      @hand = Hand.new(cards: params[:cards])
-      if @hand.valid?
-        @hand.judge_hands
-      end
+      @hand = Hand.new
+      @hand.cards = params[:cards]
+      @hand.judge
+    else
+      @hand = Hand.new
     end
   end
 end
