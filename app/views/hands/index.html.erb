@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="title">
+    <h1>Check a Poker Hand</h1>
+  </div>
+  <div class="contents">
+    <%= form_with method: :post do |f| %>
+      <div class="form-group">
+        <%= f.text_field :cards, value: @hand.cards, class: "form-control hand-input" %>
+        <%= f.submit "Check", class: "btn btn-outline-primary check-btn" %>
+      </div>
+    <% end %>
+    <% if @hand.result.present? %>
+      <div class="result">
+        <div class="result-text bg-success">
+          <%= @hand.result %>
+        </div>
+      </div>
+    <% end %>
+    <div class="errors">
+      <% if @hand.errors.present? %>
+        <% @hand.errors.each do |message| %>
+          <div class="error_message bg-warning"><%= message %></div>
+        <% end %>
+      <% end %> 
+    </div>
+  </div>
+</div>
